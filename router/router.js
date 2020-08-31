@@ -1,10 +1,21 @@
+const mysql = require('../config/database');
+
+
 module.exports = function(app){
     app.get('/', function(req, res){
-        res.render('index.html');
+        res.render('index.ejs');
     });
 
     app.get('/waiting-room', function(req, res){
-        res.render('waiting-room.html');
+        var sql = "SELECT * FROM ROOM;";
+        mysql.query(sql, function(error, result){
+            if(error){
+                console.log(error);
+            } else {
+                console.log(result);
+                res.render('waiting-room.ejs', {"room":result});
+            }
+        });
     });
 
 }
