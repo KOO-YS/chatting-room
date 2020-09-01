@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');    // requestbody -> json 변환
 var session = require('express-session');
 
 
@@ -16,7 +16,7 @@ var server = app.listen(3000, function(){
 app.use(express.static('public'));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
-
+app.use(bodyParser.urlencoded({extended:true}));
 var router = require('./router/router')(app);
+var userRouter = require('./router/userRouter')(app);
 // https://velopert.com/379
