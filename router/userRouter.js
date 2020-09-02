@@ -17,7 +17,10 @@ module.exports = function(app){
             } else {
                 console.log("저장 완료 :: ");
                 console.log(result);
-                res.send({"data":result});
+                req.session.userid = userid;  //  세션 객체 접근
+                req.session.save(() => {
+                    res.send({"data":result});
+                });
             }
         });
     });
@@ -36,7 +39,10 @@ module.exports = function(app){
             } else {
                 console.log("로그인 완료 :: ");
                 console.log(result);
-                res.send({"data":result});
+                req.session.userid = userid;  //  세션 객체 접근
+                req.session.save(() => {
+                    res.send({"data":result});
+                });
             }
         });
 

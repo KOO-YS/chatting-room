@@ -31,8 +31,9 @@ npm install
 | method | url   | function                       |
 | ------ | ----- | ------------------------------ |
 | POST   | /room | 새 채팅방 생성                 |
-| GET    | /room | 채팅방 입장                    |
-| DELETE | /room | 채팅방 삭제 (만든 사람만 가능) |
+| GET    | /room:room-name | 채팅방 입장                    |
+| GET    | /new-room | 새 채팅방 생성 페이지 입장 |
+| DELETE | /room:room-name | 채팅방 삭제 (만든 사람만 가능) |
 
 
 

@@ -8,8 +8,15 @@
 </head>
 <body>
     <div class="container">
+        <div class="row">
+            <div class="alert alert-success" role="alert">
+                <!-- <% if(userid) {%> -->
+                HELLO <%=userid%> !
+                <!-- <% } %> -->
+            </div>
+        </div>
         <h1>waiting room</h1>
-        <button type="button" class="btn btn-outline-secondary" style="float:right;">new room</button>
+        <button type="button" class="btn btn-outline-secondary" style="float:right;" onclick="location.href='/new-room'">new room</button>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -29,8 +36,8 @@
                 <% if(room != null && room.length >0){ %>
                     <% for(var i =0; i<room.length; i++ ){ %>
                         <tr>
-                            <th scope="row"><%=[i]%></th>
-                            <td><%=room[i].room_name%></td>
+                            <th scope="row"><%=room[i].room_id%></th>
+                            <td><a onclick="goToRoom('<%=room[i].room_id%>','<%=room[i].room_name%>')"><%=room[i].room_name%></a></td>
                             <td>0명</td>
                         </tr>
                     <% }
@@ -46,4 +53,9 @@
     </div>
     <%- include ("./footer.ejs") -%>
 </body>
+<script>
+    function goToRoom(roomId, roomName){
+        location.href = "/room?roomId="+roomId+"&roomName="+roomName;
+    }
+</script>
 </html>

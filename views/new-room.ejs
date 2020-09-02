@@ -1,1 +1,45 @@
-<--new room -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include ("./header.ejs") %>
+</head>
+<body>
+    <div class="container">
+        <h1>new room</h1><br>
+        <form action="/login" method="POST">
+
+            <div class="form-group">
+                <label for="room-name">방 제목</label>
+                <input type="text" class="form-control" id="room-name" placeholder="방 제목을 입력하세요">
+            </div>
+            <button type="button" class="btn btn-default" style="float: left;" onclick="location.href='/waiting-room'">목록</button>
+            <button type="button" class="btn btn-default" style="float: right;" id="roomBtn">생성</button>
+        </form>
+        
+    </div>
+    
+
+    <%- include ("./footer.ejs") -%>
+</body>
+<script>
+    $("#roomBtn").click(function(){
+        $.ajax({
+            url : 'http://localhost:3000/room',
+            method : 'post',
+            data : {
+                roomName : $("#room-name").val(),
+            },
+            success : function (data) {
+                console.log("성공");
+                document.location.href = '/waiting-room';
+            },
+            error : function (err) {
+                console.log(err.toString());
+            }
+        });
+    });
+</script>
+</html>
