@@ -9,12 +9,15 @@ socket.io를 활용한 실시간 채팅방 구현
 #### deploy(미완)
 
 ```
+
 npm install
+
+
+// run
+npm start 
+    or
+node server.js 
 ```
-
-#### run
-
-```node server.js```
 
 
 
@@ -35,7 +38,16 @@ npm install
 | GET    | /new-room | 새 채팅방 생성 페이지 입장 |
 | DELETE | /room:room-name | 채팅방 삭제 (만든 사람만 가능) |
 
-
+- #### chat info
+| event | param                | function                       |
+| :----: | ----- | ------------------------------ |
+|  connection | socket | 유저 소켓 통신 연결 |
+|  join-room  | data{roomId, userId} | 새 유저 채팅방 입장 |
+| new | data{msg} | 채팅방에 유저 이름 세팅 |
+| send-msg | roomId, name, msg    | 채팅 메시지 보내기 |
+| receive-msg | text | 채팅 메시지 받기 |
+| room-broadcast | data{msg} | 전체 안내 메시지 보내기 |
+| disconnect* |  | |
 
 
 
