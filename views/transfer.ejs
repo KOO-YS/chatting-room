@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</h ead>
+<body>
+    <%- include ("./header.ejs") %>
+    <input type="file">
+    <%- include ("./footer.ejs") -%>
+<script src="http://code.jquery.com/jquery-1.7.1.js"/>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/socket.io-stream/socket.io-stream.js"></script>
+<script>
+    $(function() {
+        var socket = io();
+
+        $('#file').change(function(e) {
+            var file = e.target.files[0];
+            var stream = ss.createStream();
+
+            // upload a file to the server.
+            ss(socket).emit('file', stream, {size: file.size});
+            ss.createBlobReadStream(file).pipe(stream);
+        });
+    });
+</script>
+</body>
+</html>

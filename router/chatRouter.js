@@ -1,3 +1,6 @@
+const socket_stream = require('socket.io-stream'); 
+const path = require('path');
+
 module.exports = function(io){
     let count = 0;
     let rooms = [];
@@ -40,5 +43,16 @@ module.exports = function(io){
             
         });
     
-    });  
+        // file upload
+        socket_stream.on('upload', function(stream, data){
+            console.log('file upload');
+            var fileName = path.basename(data.name);
+            stream.pipe(fs.createWriteStream(fileName));
+
+        });
+    });
+    
+    
+
+    
 }

@@ -25,4 +25,8 @@ module.exports = function(app){
     app.get('/transform', function(req, res){
         res.render('transform.ejs');
     });
+
+    app.get('/transfer', function(req, res){
+        res.render('transfer.ejs');
+    });
 }
